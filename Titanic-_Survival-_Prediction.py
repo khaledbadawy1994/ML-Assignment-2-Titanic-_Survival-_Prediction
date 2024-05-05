@@ -134,11 +134,11 @@ sns.countplot(x='survived', data=df);
 
 df.pclass.value_counts(normalize=True)
 
-** More than 55% of the passengers were from 3rd class**
+#** More than 55% of the passengers were from 3rd class**
 
 df.sibsp.value_counts(normalize=True)
 
-** More than 68% of the passengers had no siblings or spouse**
+#** More than 68% of the passengers had no siblings or spouse**
 
 def explore_categorical(df, col):
     print(f'### {col} ###')
@@ -200,7 +200,6 @@ df['family_size'].value_counts().loc[0]
 df['family_size'].value_counts(normalize= True)[0]
 
 df[df['family_size'] ==0].survived.mean()
-0.30353817504655495
 
 #What are top 3 categories from "family_size" have highest survival Rate ?
 
@@ -263,7 +262,7 @@ def remove_outliers(df, col):
     return df[(df[col] > lower_bound) & (df[col] < upper_bound)]
 
 df = df[df.fare < 300]
-# df = remove_outliers(df, 'fare')
+df = remove_outliers(df, 'fare')
 
 sns.boxplot( x='fare', data=df);
 
@@ -308,9 +307,9 @@ plt.show()
 # Correlation with the target
 df2.corr()['survived'].sort_values(ascending=False)
 
-we noticed High correlations between (Passenger Class and Fare Class)
+#we noticed High correlations between (Passenger Class and Fare Class)
 
-Medium correlations between (passenger class and age), (survived and Fare ), (passenger class and survived) and (parch and sibsp)
+#Medium correlations between (passenger class and age), (survived and Fare ), (passenger class and survived) and (parch and sibsp)
 
 sns.barplot(x='pclass', y='survived', hue= 'sex', data=df, ci=None);
 
@@ -387,7 +386,7 @@ age_sex[age_sex['sex']== 'male'].iloc[-1]['age_group']
 df.head()
 
 test_df
-]
+
 #Columns to DROP:SibSp,Parch,Fare,Age,Fare_group
 
 #Columns to Create: Age_class,Fare_class,married_women.
@@ -398,7 +397,7 @@ test_df
 
 #Fare_class,Age_class ready
 
-6.1 Quick Pipeline
+#6.1 Quick Pipeline
 
 #Create the Model
 
@@ -449,9 +448,9 @@ df.sample(1)
 
 X_train.sample(1)
 
-6.2 Full Pipeline
+#6.2 Full Pipeline
 
-7- BEAST Model 💡
+#7- BEAST Model 💡
 
 from sklearn.metrics import accuracy_score
 from sklearn.linear_model import RidgeClassifierCV
@@ -525,7 +524,7 @@ predictions
 
 model.get_params()
 
-8-Error analysis
+#8-Error analysis
 
 from sklearn.model_selection import cross_val_predict
 from sklearn.metrics import confusion_matrix
@@ -585,7 +584,7 @@ y_scoresi
 from sklearn .metrics import roc_auc_score
 roc_auc_score(y_train,y_scores)
 
-9-voting classifier
+#9-voting classifier
 
 from sklearn.ensemble import VotingClassifier
 m1 = [LogisticRegression(random_state=33),CalibratedClassifierCV()]
